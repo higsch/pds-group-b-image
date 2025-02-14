@@ -3,7 +3,8 @@
   let clickTextHeading = $state();
   let showAll = $state(false);
 
-  
+  let width = $state();
+  let height = $state();
 
   function handleAmpleClick() {
     clickTextHeading = 'Nicht-barrierefreie Fußgängerampeln!';
@@ -12,7 +13,7 @@
 
   function handleZebraClick() {
     clickTextHeading = 'Fehlendes Audiosignal am Zebrastreifen!';
-    clickText = 'Zebrastreifen haben keine auditativen Signale, um einer blinden Person die Verkehrssituation mitzuteilen. Wer in Hamburg schon mal an einem Zebrastreifen stand, weiß das Autos nicht zwangsläufig hier anhalten ';
+    clickText = 'Zebrastreifen haben keine auditativen Signale, um einer blinden Person die Verkehrssituation mitzuteilen. Wer in Hamburg schon mal an einem Zebrastreifen stand, weiß das Autos nicht zwangsläufig hier anhalten. ';
   }
 
   function handleBordsteinClick() {
@@ -27,7 +28,7 @@
 
   function handleSchotterClick() {
     clickTextHeading = 'Schotter oder Pflastersteine!';
-    clickText = 'Bauschutt, Schottersteine durch Baustellenabschnitte oder einfach Pflastersteine können für Personen mit Bewegungseinschränkungen zu einer großen Hürde werden';
+    clickText = 'Bauschutt, Schottersteine durch Baustellenabschnitte oder einfach Pflastersteine können für Personen mit Bewegungseinschränkungen zu einer großen Hürde werden.';
   }
 
   function reset() {
@@ -39,11 +40,16 @@
   }
 </script>
 
-<main>
+<main
+bind:clientWidth={width}
+bind:clientHeight={height}>
+
+
   <div class="image-container">
-    <img src="assets/Kreuzung.png" alt="Interactive Map" width="700" height="500">
+    <img src="assets/Kreuzung.png" alt="Interactive Map" width="600" height="400">
     
     <button onclick={toggleAllAreas} class="toggle-button">{showAll ? 'Lösung verbergen' : 'Lösung anzeigen'}</button>
+    
     
     <div
       onclick={handleAmpleClick}
@@ -84,14 +90,20 @@
       </div>
     {/if}
   </div>
+  
 </main>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
 
+main{
+  background-color: rgba(120, 119, 145, 1);
+}
+
     .image-container {
       position: relative;
       display: inline-block;
+     
     }
 
     .image-container img {
